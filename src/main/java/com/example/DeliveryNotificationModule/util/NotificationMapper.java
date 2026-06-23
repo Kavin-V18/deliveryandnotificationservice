@@ -10,28 +10,26 @@ public class NotificationMapper {
         if (notification == null) {
             return null;
         }
-        return new NotificationDto(
-               notification.getRecipientRole(),
-                notification.getIsRead(),
-                notification.getMessage(),
-                notification.getCreatedAt(),
-                notification.getNotificationType(),
-                notification.getId()
-        );
+        return NotificationDto.builder().notificationType(notification.getNotificationType()).
+                recipientRole(notification.getRecipientRole()).
+                isRead(notification.getIsRead()).
+                id(notification.getId()).
+                created_by(notification.getCreated_by()).
+                last_modified_by(notification.getLast_modified_by()).
+        build();
     }
-
-    // Convert DTO to Entity
     public Notification toEntity(NotificationDto dto) {
         if (dto == null) {
             return null;
         }
         Notification notification = new Notification();
-
          notification.setNotificationType(dto.getNotificationType());
          notification.setRecipientRole(dto.getRecipientRole());
          notification.setMessage(dto.getMessage());
          notification.setCreatedAt(dto.getCreatedAt());
          notification.setIsRead(dto.getIsRead());
+         notification.setCreated_by(dto.getCreated_by());
+         notification.setLast_modified_by(dto.getLast_modified_by());
         return notification;
     }
 }

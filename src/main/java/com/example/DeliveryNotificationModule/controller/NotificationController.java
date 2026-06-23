@@ -1,7 +1,6 @@
 package com.example.DeliveryNotificationModule.controller;
 
-
-import com.example.DeliveryNotificationModule.entity.Notification;
+import com.example.DeliveryNotificationModule.dto.NotificationDto;
 import com.example.DeliveryNotificationModule.service.NotificationService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -16,20 +15,20 @@ public class NotificationController {
             this.notificationService=notificationService;
         }
     @GetMapping()
-    public List<Notification> getNotifications() {
+    public List<NotificationDto> getNotifications() {
         return notificationService.getAllNotifications();
     }
     @PostMapping()
-    public  Notification createNotification(@Valid  @RequestBody Notification notification){
-           return notificationService.createNotification(notification);
+    public NotificationDto createNotification(@Valid  @RequestBody NotificationDto notificationDto){
+           return notificationService.createNotification(notificationDto);
     }
     @GetMapping("/{id}")
-    public Notification getNotificationById(@PathVariable int id){
+    public NotificationDto getNotificationById(@PathVariable int id){
             return notificationService.getNotificationById(id);
     }
     @PostMapping("/{id}")
-    public Notification updateNotification(@PathVariable int id,@Valid @RequestBody Notification notification){
-            return  notificationService.updateNotification(id, notification);
+    public NotificationDto updateNotification(@PathVariable int id,@Valid @RequestBody NotificationDto notificationDto){
+            return  notificationService.updateNotification(id, notificationDto);
     }
     @DeleteMapping("/{id}")
     public String deleteNotification(@PathVariable int id){

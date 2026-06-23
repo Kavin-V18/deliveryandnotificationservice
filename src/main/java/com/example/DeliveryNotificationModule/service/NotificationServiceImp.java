@@ -7,7 +7,6 @@ import com.example.DeliveryNotificationModule.util.NotificationMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
 @Service
 public class NotificationServiceImp implements NotificationService {
     private final NotificationRepository notificationRepository;
@@ -17,40 +16,40 @@ public class NotificationServiceImp implements NotificationService {
             this.notificationMapper=notificationMapper;
     }
     @Override
-    public Notification createNotification(Notification notification) {
-       return notificationRepository.save(notification);
+    public NotificationDto createNotification(NotificationDto notificationDto) {
+        Notification entity = notificationMapper.toEntity(notificationDto); // DTO -> Entity
+        Notification savedEntity = notificationRepository.save(entity);
+        return notificationMapper.toDto(savedEntity);
     }
     @Override
-    public Notification getNotificationById(int id) {
-        return notificationRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Notification not found with id: " + id));
+    public NotificationDto getNotificationById(int id) {
+        Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException("No data present in this id"));
+        NotificationDto notificationDtos= notificationMapper.toDto(existing);
+        return  notificationDtos;
     }
     @Override
-    public List<Notification> getAllNotifications() {
-        return notificationRepository.findAll();
+    public List<NotificationDto> getAllNotifications() {
+        return notificationRepository.findAll().stream().map(notificationMapper::toDto).toList();
     }
     @Override
-    public Notification updateNotification(int id,Notification notification) {
-        Notification existing = getNotificationById(id);
-        existing.setRecipientRole(notification.getRecipientRole());
-        existing.setMessage(notification.getMessage());
-        existing.setNotificationType(notification.getNotificationType());
-        existing.setIsRead(notification.getIsRead());
-
-        return notificationRepository.save(existing);
+    public NotificationDto updateNotification(int id, NotificationDto notificationDto) {
+        Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
+        existing.setNotificationType(notificationDto.getNotificationType());
+        existing.setMessage(notificationDto.getMessage());
+        existing.setIsRead(notificationDto.getIsRead());
+        existing.setRecipientRole(notificationDto.getRecipientRole());
+        existing.setLast_modified_by(notificationDto.getLast_modified_by());
+        Notification updatedEntity=notificationRepository.save(existing);
+        return  notificationMapper.toDto(updatedEntity);
     }
     @Override
     public String deleteNotification(int id) {
-
-        Notification existing = getNotificationById(id);
-        notificationRepository.delete(existing);
+        Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
+        notificationRepository.deleteById(id);
         return "deleted successfully";
     }
     @Override
-    public Notification markAsRead(int id) {
-        Notification notification = getNotificationById(id);
-        notification.setIsRead(true);
-        return notificationRepository.save(notification);
+    public NotificationDto markAsRead(int id) {
+        return null;
     }
 }
