@@ -1,12 +1,13 @@
 package com.example.DeliveryNotificationModule.service;
 
+import com.example.DeliveryNotificationModule.dto.NotificationDto;
 import com.example.DeliveryNotificationModule.entity.Notification;
 import java.util.List;
 public interface NotificationService {
-    Notification createNotification(Notification notification);
-    Notification getNotificationById(int id);
-    List<Notification> getAllNotifications();
-    Notification updateNotification(int id, Notification notification);
+    NotificationDto createNotification(NotificationDto notificationDto);
+    NotificationDto getNotificationById(int id);
+    List<NotificationDto> getAllNotifications();
+    NotificationDto updateNotification(int id, NotificationDto notificationDto);
     String deleteNotification(int id);
-    Notification markAsRead(int id);
+    NotificationDto markAsRead(int id);
 }
