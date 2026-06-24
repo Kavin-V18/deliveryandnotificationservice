@@ -1,7 +1,6 @@
 package com.example.DeliveryNotificationModule.service;
 
 import com.example.DeliveryNotificationModule.dto.NotificationDto;
-import com.example.DeliveryNotificationModule.entity.Notification;
 import java.util.List;
 public interface NotificationService {
     NotificationDto createNotification(NotificationDto notificationDto);

@@ -1,13 +1,13 @@
 package com.example.DeliveryNotificationModule.service;
 
-import com.example.DeliveryNotificationModule.entity.VehicleDelivery;
+import com.example.DeliveryNotificationModule.dto.VehicleDeliveryDto;
 import java.util.List;
 public interface VehicleDeliveryService {
 
-      VehicleDelivery createVehicleDelivery(VehicleDelivery vehicleDelivery);
-        VehicleDelivery getVehicleDeliveryById(int id);
-        List<VehicleDelivery>  getAllvehicleDelivery();
-        VehicleDelivery updateVehicleDelivery(int id,VehicleDelivery vehicleDelivery);
+      VehicleDeliveryDto createVehicleDelivery(VehicleDeliveryDto vehicleDeliveryDto);
+    VehicleDeliveryDto getVehicleDeliveryById(int id);
+        List<VehicleDeliveryDto>  getAllvehicleDelivery();
+    VehicleDeliveryDto updateVehicleDelivery(int id,VehicleDeliveryDto vehicleDeliveryDto);
         void deleteVehicleDelivery(int id);
 
 }
