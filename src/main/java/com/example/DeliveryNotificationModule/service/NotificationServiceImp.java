@@ -5,16 +5,14 @@ import com.example.DeliveryNotificationModule.entity.Notification;
 import com.example.DeliveryNotificationModule.repository.NotificationRepository;
 import com.example.DeliveryNotificationModule.util.NotificationMapper;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class NotificationServiceImp implements NotificationService {
     private final NotificationRepository notificationRepository;
     private final NotificationMapper notificationMapper;
-    public NotificationServiceImp(NotificationRepository notificationRepository, NotificationMapper notificationMapper){
-            this.notificationRepository=notificationRepository;
-            this.notificationMapper=notificationMapper;
-    }
     @Override
     public NotificationDto createNotification(NotificationDto notificationDto) {
         Notification entity = notificationMapper.toEntity(notificationDto); // DTO -> Entity

@@ -3,17 +3,17 @@ package com.example.DeliveryNotificationModule.controller;
 import com.example.DeliveryNotificationModule.dto.NotificationDto;
 import com.example.DeliveryNotificationModule.service.NotificationService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/notification")
+@RequiredArgsConstructor
 public class NotificationController {
       private final  NotificationService notificationService;
-        public NotificationController(NotificationService notificationService){
-            this.notificationService=notificationService;
-        }
+
     @GetMapping()
     public List<NotificationDto> getNotifications() {
         return notificationService.getAllNotifications();

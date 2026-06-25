@@ -1,14 +1,17 @@
 
 package com.example.DeliveryNotificationModule.entity;
 
+import com.example.EmployeeCustomerModule.entity.Customer;
+import com.example.EmployeeCustomerModule.entity.Employee;
+import com.example.QuantityandInventoryModule.entity.VehicleInventory;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -20,36 +23,30 @@ import java.time.LocalDate;
 )
 @Data
 public class VehicleDelivery {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     @Column(name = "invoice_number",
             nullable = false,
             unique = true)
     private String invoiceNumber;
     // FK  VehicleInventory Service
-    @NotBlank
     @Column(nullable = false)
-    private String vehicleId;
+    private VehicleInventory vehicleId;
     // FK  Customer Service
-    @NotBlank
     @Column(nullable = false)
-    private String customerId;
-    @NotNull
+    private Customer customerId;
     @Column(nullable = false)
-    @PastOrPresent(message =
-            "Delivery date cannot be in the future")
     private LocalDate deliveryDate;
-    @NotNull
-    @DecimalMin(value = "0.01",
-            message = "Invoice amount must be greater than 0")
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal invoiceAmount;
     // FK  Employee Service
-    @NotBlank
     @Column(nullable = false)
-    private String deliveredByEmployeeId;
+    private Employee deliveredByEmployeeId;
+    @CreationTimestamp
+    private LocalDateTime created_at;
+    private String created_by;
+    @UpdateTimestamp
+    private LocalDateTime last_modified_at;
+    private String last_modified_by;
 }
