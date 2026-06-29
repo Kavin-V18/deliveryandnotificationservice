@@ -23,15 +23,15 @@ public class NotificationController {
            return notificationService.createNotification(notificationDto);
     }
     @GetMapping("/{id}")
-    public NotificationDto getNotificationById(@PathVariable int id){
+    public NotificationDto getNotificationById(@PathVariable Long id){
             return notificationService.getNotificationById(id);
     }
     @PostMapping("/{id}")
-    public NotificationDto updateNotification(@PathVariable int id,@Valid @RequestBody NotificationDto notificationDto){
+    public NotificationDto updateNotification(@PathVariable Long id,@Valid @RequestBody NotificationDto notificationDto){
             return  notificationService.updateNotification(id, notificationDto);
     }
     @DeleteMapping("/{id}")
-    public String deleteNotification(@PathVariable int id){
+    public String deleteNotification(@PathVariable Long id){
             return notificationService.deleteNotification(id);
     }
 }

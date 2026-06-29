@@ -1,6 +1,6 @@
 package com.example.DeliveryNotificationModule.service;
 
-import com.example.DeliveryNotificationModule.dto.VehicleDeliveryDto;
+import  com.example.DeliveryNotificationModule.dto.VehicleDeliveryDto;
 import com.example.DeliveryNotificationModule.entity.VehicleDelivery;
 import com.example.DeliveryNotificationModule.repository.VehicleDeliveryRepository;
 import com.example.DeliveryNotificationModule.util.VehicleDeliveryMapper;
@@ -23,7 +23,7 @@ public class VehicledeliveryServiceImp implements VehicleDeliveryService   {
         return vehicleDeliveryMapper.toDto(savedEntity);
     }
     @Override
-    public VehicleDeliveryDto getVehicleDeliveryById(int id) {
+    public VehicleDeliveryDto getVehicleDeliveryById(Long id) {
         VehicleDelivery existing=vehicleDeliveryRepository.findById(id).orElseThrow(()->new EntityNotFoundException("No data present in this id"));
         VehicleDeliveryDto vehicleDeliveryDto= vehicleDeliveryMapper.toDto(existing);
         return  vehicleDeliveryDto;
@@ -33,7 +33,7 @@ public class VehicledeliveryServiceImp implements VehicleDeliveryService   {
         return vehicleDeliveryRepository.findAll().stream().map(vehicleDeliveryMapper::toDto).toList();
     }
     @Override
-    public VehicleDeliveryDto updateVehicleDelivery(int id, VehicleDeliveryDto vehicleDeliveryDto) {
+    public VehicleDeliveryDto updateVehicleDelivery(Long id, VehicleDeliveryDto vehicleDeliveryDto) {
         VehicleDelivery existing=vehicleDeliveryRepository.findById(id).orElseThrow(()->new EntityNotFoundException("No data present in this id"));
          existing.setInvoiceAmount(vehicleDeliveryDto.getInvoiceAmount());
          existing.setInvoiceNumber(vehicleDeliveryDto.getInvoiceNumber());
@@ -42,9 +42,8 @@ public class VehicledeliveryServiceImp implements VehicleDeliveryService   {
          VehicleDelivery savedEntity = vehicleDeliveryRepository.save(existing);
          return vehicleDeliveryMapper.toDto(savedEntity);
     }
-
     @Override
-    public void deleteVehicleDelivery(int id) {
+    public void deleteVehicleDelivery(Long id) {
         VehicleDelivery existing=vehicleDeliveryRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
         vehicleDeliveryRepository.deleteById(id);
     }

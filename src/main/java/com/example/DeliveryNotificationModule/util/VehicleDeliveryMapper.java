@@ -23,7 +23,6 @@ public class VehicleDeliveryMapper {
                 deliveryDate(vehicleDelivery.getDeliveryDate()).
                 build();
     }
-
     public VehicleDelivery toEntity(VehicleDeliveryDto dto) {
         if (dto == null) return null;
         VehicleDelivery vehicleDelivery = new VehicleDelivery();

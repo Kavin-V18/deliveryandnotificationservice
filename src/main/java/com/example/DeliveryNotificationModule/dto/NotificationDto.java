@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class NotificationDto {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     @Enumerated(EnumType.STRING)
     private RecipientRole recipientRole;
     @NotBlank

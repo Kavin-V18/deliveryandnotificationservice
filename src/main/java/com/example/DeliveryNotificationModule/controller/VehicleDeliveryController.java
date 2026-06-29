@@ -23,15 +23,15 @@ public class VehicleDeliveryController {
         return vehicleDeliveryService.createVehicleDelivery(vehicleDelivery);
     }
     @GetMapping("/{id}")
-    public VehicleDeliveryDto getNotificationById(@PathVariable int id){
+    public VehicleDeliveryDto getNotificationById(@PathVariable Long id){
         return vehicleDeliveryService.getVehicleDeliveryById(id);
     }
     @PostMapping("/{id}")
-    public VehicleDeliveryDto updateNotification(@PathVariable int id,@Valid @RequestBody VehicleDeliveryDto vehicleDelivery){
+    public VehicleDeliveryDto updateNotification(@PathVariable Long id,@Valid @RequestBody VehicleDeliveryDto vehicleDelivery){
         return  vehicleDeliveryService.updateVehicleDelivery(id, vehicleDelivery);
     }
     @DeleteMapping("/{id}")
-    public void deleteNotification(@PathVariable int id){
+    public void deleteNotification(@PathVariable Long id){
        vehicleDeliveryService.deleteVehicleDelivery(id);
     }
 

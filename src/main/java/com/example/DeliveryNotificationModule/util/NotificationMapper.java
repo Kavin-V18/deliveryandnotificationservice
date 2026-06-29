@@ -13,7 +13,7 @@ public class NotificationMapper {
         return NotificationDto.builder().notificationType(notification.getNotificationType()).
                 recipientRole(notification.getRecipientRole()).
                 isRead(notification.getIsRead()).
-                id(notification.getId()).
+
                 created_by(notification.getCreated_by()).
                 last_modified_by(notification.getLast_modified_by()).
         build();
