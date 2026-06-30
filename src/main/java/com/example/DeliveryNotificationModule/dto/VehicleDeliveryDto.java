@@ -40,8 +40,7 @@ public class VehicleDeliveryDto {
     private Long deliveredByEmployeeId;
     @NotBlank
     private LocalDateTime created_at;
-    @NotBlank
-    private String created_by;
+    private Long created_by;
     private LocalDateTime last_modified_at;
-    private String last_modified_by;
+    private Long last_modified_by;
 }
