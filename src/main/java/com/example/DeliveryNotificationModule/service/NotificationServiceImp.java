@@ -20,7 +20,7 @@ public class NotificationServiceImp implements NotificationService {
         return notificationMapper.toDto(savedEntity);
     }
     @Override
-    public NotificationDto getNotificationById(int id) {
+    public NotificationDto getNotificationById(Long id) {
         Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException("No data present in this id"));
         NotificationDto notificationDtos= notificationMapper.toDto(existing);
         return  notificationDtos;
@@ -30,7 +30,7 @@ public class NotificationServiceImp implements NotificationService {
         return notificationRepository.findAll().stream().map(notificationMapper::toDto).toList();
     }
     @Override
-    public NotificationDto updateNotification(int id, NotificationDto notificationDto) {
+    public NotificationDto updateNotification(Long id, NotificationDto notificationDto) {
         Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
         existing.setNotificationType(notificationDto.getNotificationType());
         existing.setMessage(notificationDto.getMessage());
@@ -41,13 +41,13 @@ public class NotificationServiceImp implements NotificationService {
         return  notificationMapper.toDto(updatedEntity);
     }
     @Override
-    public String deleteNotification(int id) {
+    public String deleteNotification(Long id) {
         Notification existing=notificationRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
         notificationRepository.deleteById(id);
         return "deleted successfully";
     }
     @Override
-    public NotificationDto markAsRead(int id) {
+    public NotificationDto markAsRead(Long id) {
         return null;
     }
 }

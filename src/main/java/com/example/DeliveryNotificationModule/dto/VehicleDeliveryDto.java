@@ -1,8 +1,5 @@
 package com.example.DeliveryNotificationModule.dto;
 
-import com.example.EmployeeCustomerModule.entity.Customer;
-import com.example.EmployeeCustomerModule.entity.Employee;
-import com.example.QuantityandInventoryModule.entity.VehicleInventory;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,9 +22,11 @@ public class VehicleDeliveryDto {
     @NotBlank
     private String invoiceNumber;
     @NotBlank
-    private VehicleInventory vehicleId;
+    //foreign key--vehicleInventory
+    private Long vehicleId;
     @NotBlank
-    private Customer customerId;
+    //foreign-key --customer
+    private Long customerId;
     @NotNull
     @PastOrPresent(message =
             "Delivery date cannot be in the future")
@@ -36,9 +35,9 @@ public class VehicleDeliveryDto {
     @DecimalMin(value = "0.01",
             message = "Invoice amount must be greater than 0")
     private BigDecimal invoiceAmount;
-    // FK  Employee Service
     @NotBlank
-    private Employee deliveredByEmployeeId;
+    // FK -- Employee
+    private Long deliveredByEmployeeId;
     @NotBlank
     private LocalDateTime created_at;
     @NotBlank

@@ -7,6 +7,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
@@ -14,6 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "notifications", schema = "public")
 public class Notification {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -28,8 +33,10 @@ public class Notification {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+    @CreatedBy
     private String created_by;
     @UpdateTimestamp
     private LocalDate last_modified_at;
+    @LastModifiedBy
     private String last_modified_by;
 }

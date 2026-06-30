@@ -4,9 +4,9 @@ import com.example.DeliveryNotificationModule.dto.NotificationDto;
 import java.util.List;
 public interface NotificationService {
     NotificationDto createNotification(NotificationDto notificationDto);
-    NotificationDto getNotificationById(int id);
+    NotificationDto getNotificationById(Long id);
     List<NotificationDto> getAllNotifications();
-    NotificationDto updateNotification(int id, NotificationDto notificationDto);
-    String deleteNotification(int id);
-    NotificationDto markAsRead(int id);
+    NotificationDto updateNotification(Long id, NotificationDto notificationDto);
+    String deleteNotification(Long id);
+    NotificationDto markAsRead(Long id);
 }

@@ -1,13 +1,13 @@
 
 package com.example.DeliveryNotificationModule.entity;
 
-import com.example.EmployeeCustomerModule.entity.Customer;
-import com.example.EmployeeCustomerModule.entity.Employee;
-import com.example.QuantityandInventoryModule.entity.VehicleInventory;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,23 +30,25 @@ public class VehicleDelivery {
             nullable = false,
             unique = true)
     private String invoiceNumber;
-    // FK  VehicleInventory Service
+    // FK  VehicleInventory
     @Column(nullable = false)
-    private VehicleInventory vehicleId;
-    // FK  Customer Service
+    private Long vehicleId;
+    // FK  Customer
     @Column(nullable = false)
-    private Customer customerId;
+    private Long customerId;
     @Column(nullable = false)
     private LocalDate deliveryDate;
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal invoiceAmount;
-    // FK  Employee Service
+    // FK  Employee
     @Column(nullable = false)
-    private Employee deliveredByEmployeeId;
+    private Long deliveredByEmployeeId;
     @CreationTimestamp
     private LocalDateTime created_at;
+    @CreatedBy
     private String created_by;
     @UpdateTimestamp
     private LocalDateTime last_modified_at;
+    @LastModifiedBy
     private String last_modified_by;
 }
